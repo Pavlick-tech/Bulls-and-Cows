@@ -6,10 +6,11 @@ def oddelovaciRadek():
 print("Hi there!")
 oddelovaciRadek()
 
-#nahodneCislo = 1234
-nahodneCislo = 0  # pocatecni hodnota
-while len(set(str(nahodneCislo))) != 4:  # dokud neni delka generovaneho cisla 4
-    nahodneCislo = random.randint(1000, 9999)
+digits = set(range(1,10))
+firstdigit = random.randint(1, 9)
+otherdigits = random.sample(digits - {firstdigit}, 3)
+nahodneCislo = str(firstdigit) + ''.join(map(str, otherdigits))
+print(nahodneCislo)
 
 nahodneCisloList = [int(digit) for digit in str(nahodneCislo)]   
 
@@ -62,7 +63,16 @@ while not konecHry:
                     else:
                         konecHry = bool(False)
                         pocetPokusu += 1
-                        vysledekKola = str(pocetBulls) + " bulls, " + str(pocetCows) + "cows"
+                        if pocetBulls > 1:
+                            vysledekKola = str(pocetBulls) + " bulls, " 
+                        else:
+                            vysledekKola = str(pocetBulls) + " bull, "     
+
+                        if pocetCows > 1:
+                            vysledekKola += str(pocetCows) + " cows, " 
+                        else:
+                            vysledekKola += str(pocetCows) + " cow, "  
+
                         print(vysledekKola)
                         oddelovaciRadek()
     else:
